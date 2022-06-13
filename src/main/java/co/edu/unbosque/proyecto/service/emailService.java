@@ -1,13 +1,11 @@
 package co.edu.unbosque.proyecto.service;
 
-import co.edu.unbosque.proyecto.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 @Service
 public class emailService {
     //Importante hacer la inyección de dependencia de JavaMailSender:

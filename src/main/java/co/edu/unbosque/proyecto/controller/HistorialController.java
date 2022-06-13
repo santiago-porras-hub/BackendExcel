@@ -2,10 +2,7 @@ package co.edu.unbosque.proyecto.controller;
 
 
 import co.edu.unbosque.proyecto.Pojo.HistorialPojo;
-import co.edu.unbosque.proyecto.Pojo.MessagePojo;
-import co.edu.unbosque.proyecto.Pojo.UserPojo;
 import co.edu.unbosque.proyecto.models.Historial;
-import co.edu.unbosque.proyecto.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

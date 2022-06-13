@@ -1,12 +1,13 @@
 package co.edu.unbosque.proyecto.service;
 
 import co.edu.unbosque.proyecto.Pojo.UserPojo;
-import co.edu.unbosque.proyecto.models.User;
+import co.edu.unbosque.proyecto.models.Prioridad;
+import co.edu.unbosque.proyecto.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import co.edu.unbosque.proyecto.repositories.UserRepository;
-import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -23,26 +24,30 @@ public class userService {
         return userRepository.findAll();
     }
 
-    public  User obtainId(Integer id){
+    public Usuario obtainId(Integer id){
 
         return  userRepository.buscarPorId(id);
     }
-    public User editarUser(UserPojo user,Integer id){
+    public Usuario editarUser(UserPojo user, Integer id){
         return  userRepository.editar(user, id);
     }
 
-    public User deleteUser(Integer id){
+    public Usuario deleteUser(Integer id){
         return  userRepository.eliminar(id);
     }
 
-    public User registerUser(User user){
+    public Usuario registerUser(Usuario usuario){
 
-        User newUser= new User(user.getId(),user.getNombre(),user.getTelefono(),user.getDireccion(),user.getCorreo(),user.getContraseña(),user.getPrioridad(),user.getEstado(),user.getIntentos());
-        userRepository.registerUser(newUser);
-        return newUser;
+        Usuario newUsuario = new Usuario(usuario.getId(), usuario.getNombre(), usuario.getTelefono(), usuario.getDireccion(), usuario.getCorreo(), usuario.getContraseña(), usuario.getPrioridad(), usuario.getEstado(), usuario.getIntentos());
+        userRepository.registerUser(newUsuario);
+        return newUsuario;
     }
 
     public String loginUser(UserPojo userPojo){
         return userRepository.loginUser(userPojo);
+    }
+
+    public  Prioridad obtainIdHist(Integer id){
+        return  userRepository.buscarPorIdHist(id);
     }
 }

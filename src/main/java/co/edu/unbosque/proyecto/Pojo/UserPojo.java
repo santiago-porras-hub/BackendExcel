@@ -28,6 +28,18 @@ public class UserPojo {
         this.intentos = intentos;
     }
 
+    public UserPojo(Integer id, String nombre, String telefono, String direccion, String correo, String contraseña, String estado, Integer intentos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.contraseña = contraseña;
+        this.prioridad = prioridad;
+        this.estado = estado;
+        this.intentos = intentos;
+    }
+
     public int getId() {
         return id;
     }

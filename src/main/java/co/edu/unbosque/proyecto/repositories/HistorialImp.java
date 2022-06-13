@@ -3,7 +3,6 @@ package co.edu.unbosque.proyecto.repositories;
 
 import co.edu.unbosque.proyecto.Pojo.HistorialPojo;
 import co.edu.unbosque.proyecto.models.Historial;
-import co.edu.unbosque.proyecto.models.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +24,7 @@ public class HistorialImp implements HistorialRepository {
         List<Historial> historials = entityManager.createQuery(query).getResultList();
         entityManager.merge(historials);
     }
+
 
 
 }

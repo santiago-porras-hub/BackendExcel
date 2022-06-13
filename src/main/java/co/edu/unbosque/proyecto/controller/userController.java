@@ -1,16 +1,12 @@
 package co.edu.unbosque.proyecto.controller;
 
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import co.edu.unbosque.proyecto.Pojo.MessagePojo;
 import co.edu.unbosque.proyecto.Pojo.UserPojo;
-import co.edu.unbosque.proyecto.models.User;
+import co.edu.unbosque.proyecto.models.Usuario;
 import co.edu.unbosque.proyecto.service.emailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,24 +22,26 @@ public class userController {
     co.edu.unbosque.proyecto.service.userService userService;
 
 
+
+
     @GetMapping("/listUser")
     public List<UserPojo> listUser(){
         return userService.list();
     }
 
     @GetMapping("/id")
-    public  User getId(@RequestParam Integer id){
+    public Usuario getId(@RequestParam Integer id){
         System.out.println(id);
         return userService.obtainId(id);
     }
 
     @PutMapping("/editUser")
-    public User editUser(@RequestBody UserPojo userPojo,Integer id){
+    public Usuario editUser(@RequestBody UserPojo userPojo, Integer id){
         return userService.editarUser(userPojo,id);
     }
 
     @PutMapping("/deleteUser")
-    public User  deleteUser(@RequestParam Integer id){
+    public Usuario deleteUser(@RequestParam Integer id){
         return userService.deleteUser(id);
     }
 
@@ -52,9 +50,12 @@ public class userController {
     @PostMapping("/createUser")
     public MessagePojo createUser(@RequestBody UserPojo userPojo){
         MessagePojo userPojo1= new MessagePojo();
-        User user= new User(userPojo.getId(),userPojo.getNombre(),userPojo.getTelefono(),userPojo.getDireccion(),userPojo.getCorreo(),userPojo.getContraseña(),"U","A",0);
-        userService.registerUser(user);
-        if(user.getId()==0){
+       System.out.println(userPojo.getId());
+       System.out.println(userPojo.getEstado());
+        Usuario usuario = new Usuario(userPojo.getId(),userPojo.getNombre(),userPojo.getTelefono(),userPojo.getDireccion(),userPojo.getCorreo(),userPojo.getContraseña(),userService.obtainIdHist(2),"A",0);
+
+        userService.registerUser(usuario);
+        if(usuario.getId()==0){
             userPojo1.setMessage("no registrado");
         }
         userPojo1.setMessage("registrado");

@@ -1,45 +1,56 @@
 package co.edu.unbosque.proyecto.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
 
+
+/**
+ * The persistent class for the historial database table.
+ *
+ */
 @Entity
-@Table(name="auditoria")
+@NamedQuery(name="Historial.findAll", query="SELECT h FROM Historial h")
 public class Historial implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(unique = true,nullable = false)
-    private Integer id;
+    @Column(name="id_auditoria")
+    private Integer idAuditoria;
+
     private String descripcion;
+
     private String estado;
+
+    @Temporal(TemporalType.DATE)
     private Date fecha;
 
-    public Historial(){
+    //bi-directional many-to-one association to Usuario
+    @ManyToOne
+    @JoinColumn(name="id_usuario")
+    private Usuario usuario;
 
+    public Historial() {
     }
 
-    public Historial(Integer id, String descripcion, String estado, Date fecha) {
-        this.id = id;
+    public Historial(Integer idAuditoria, String descripcion, String estado, Date fecha) {
+        this.idAuditoria = idAuditoria;
         this.descripcion = descripcion;
         this.estado = estado;
         this.fecha = fecha;
+        this.usuario = usuario;
     }
 
-
-    public Integer getId() {
-        return id;
+    public Integer getIdAuditoria() {
+        return this.idAuditoria;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdAuditoria(Integer idAuditoria) {
+        this.idAuditoria = idAuditoria;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return this.descripcion;
     }
 
     public void setDescripcion(String descripcion) {
@@ -47,7 +58,7 @@ public class Historial implements Serializable {
     }
 
     public String getEstado() {
-        return estado;
+        return this.estado;
     }
 
     public void setEstado(String estado) {
@@ -55,11 +66,19 @@ public class Historial implements Serializable {
     }
 
     public Date getFecha() {
-        return fecha;
+        return this.fecha;
     }
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
 }
