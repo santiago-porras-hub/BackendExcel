@@ -21,18 +21,24 @@ public class userController {
     @Autowired
     co.edu.unbosque.proyecto.service.userService userService;
 
-
-
-
     @GetMapping("/listUser")
     public List<UserPojo> listUser(){
         return userService.list();
     }
 
-    @GetMapping("/id")
-    public Usuario getId(@RequestParam Integer id){
+    @GetMapping("/obtenerid")
+    public UserPojo getId(@RequestParam Integer id){
         System.out.println(id);
-        return userService.obtainId(id);
+
+        UserPojo userPojo= new UserPojo();
+        Usuario usuario= userService.obtainId(id);
+        userPojo.setNombre(usuario.getNombre());
+        userPojo.setId(usuario.getId());
+        userPojo.setCorreo(usuario.getCorreo());
+        userPojo.setTelefono(usuario.getTelefono());
+        userPojo.setContraseña(usuario.getContraseña());
+        userPojo.setCorreo(usuario.getCorreo());
+        return userPojo;
     }
 
     @PutMapping("/editUser")

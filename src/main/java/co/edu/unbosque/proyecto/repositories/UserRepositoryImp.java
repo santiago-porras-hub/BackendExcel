@@ -36,9 +36,9 @@ public class UserRepositoryImp implements UserRepository{
 
         Usuario usuario = buscarPorId(userPojo.getId());
 
-        if(usuario.getPrioridad().equals("A") && usuario.getContraseña().equals(userPojo.getContraseña())) {
+        if(usuario.getPrioridad().getDescripcion().equals("Admin") && usuario.getContraseña().equals(userPojo.getContraseña())) {
             return "Ingresado admin";
-        }else if(usuario.getPrioridad().equals("U") && usuario.getContraseña().equals(userPojo.getContraseña())){
+        }else if(usuario.getPrioridad().getDescripcion().equals("User") && usuario.getContraseña().equals(userPojo.getContraseña())){
             return "Ingresado usuario";
         }else{
             return "Credenciales incorrectas";
@@ -52,7 +52,7 @@ public class UserRepositoryImp implements UserRepository{
         String query = " FROM Usuario where estado='A'";
         List<Usuario> usuarios = entityManager.createQuery(query).getResultList();
         for (Usuario usuario:usuarios) {
-            listpojos.add(new UserPojo(usuario.getId(),usuario.getNombre(),usuario.getTelefono(),usuario.getDireccion(), usuario.getCorreo(),usuario.getContraseña(),usuario.getEstado(),usuario.getIntentos()));
+            listpojos.add(new UserPojo(usuario.getId(),usuario.getNombre(),usuario.getTelefono(),usuario.getDireccion(), usuario.getCorreo(),usuario.getContraseña(),usuario.getPrioridad().getDescripcion(),usuario.getEstado(),usuario.getIntentos()));
         }
         return listpojos;
     }
