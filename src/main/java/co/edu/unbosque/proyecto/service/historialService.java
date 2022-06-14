@@ -2,6 +2,8 @@ package co.edu.unbosque.proyecto.service;
 
 import co.edu.unbosque.proyecto.Pojo.HistorialPojo;
 import co.edu.unbosque.proyecto.models.Historial;
+import co.edu.unbosque.proyecto.models.Prioridad;
+import co.edu.unbosque.proyecto.models.Usuario;
 import co.edu.unbosque.proyecto.repositories.HistorialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,15 +15,14 @@ public class historialService {
 
     @Autowired
     HistorialRepository historialRepository;
+    @Autowired
+    userService userService;
 
     public Historial registerHistorial(Historial historial,Integer id){
-
-        HistorialPojo historialPojo= new HistorialPojo();
-
-
+        Usuario usuario= userService.obtainId(id);
         Historial newHistorial= new Historial(historial.getIdAuditoria(),historial.getDescripcion(),historial.getEstado(),historial.getFecha());
-        historialRepository.registerHist(historialPojo,id);
-
+        newHistorial.setUsuario(usuario);
+        historialRepository.registerHist(newHistorial);
         return newHistorial;
     }
 

@@ -5,7 +5,7 @@ import co.edu.unbosque.proyecto.models.Historial;
 
 public interface HistorialRepository {
 
-    void registerHist(HistorialPojo historialPojo, Integer id);
+    void registerHist(Historial historial);
 
 
 }

@@ -35,6 +35,7 @@ public class userController {
         userPojo.setNombre(usuario.getNombre());
         userPojo.setId(usuario.getId());
         userPojo.setCorreo(usuario.getCorreo());
+        userPojo.setDireccion(usuario.getDireccion());
         userPojo.setTelefono(usuario.getTelefono());
         userPojo.setContraseña(usuario.getContraseña());
         userPojo.setCorreo(usuario.getCorreo());

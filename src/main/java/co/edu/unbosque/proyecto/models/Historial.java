@@ -41,6 +41,10 @@ public class Historial implements Serializable {
         this.usuario = usuario;
     }
 
+    public Historial(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public Integer getIdAuditoria() {
         return this.idAuditoria;
     }

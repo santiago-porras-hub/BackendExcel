@@ -17,14 +17,9 @@ public class HistorialController {
     co.edu.unbosque.proyecto.service.historialService historialService;
 
     @PostMapping("/createHistorial")
-    public Historial createHistorial(@RequestBody HistorialPojo historialPojo,Integer id){
+    public Historial createHistorial(@RequestBody HistorialPojo historialPojo){
         Historial historial= new Historial(historialPojo.getId(),historialPojo.getDescripcion(),historialPojo.getEstado(),new Date());
         historialService.registerHistorial(historial,historialPojo.getUsuario_id());
       return historial;
     }
-
-
-
-
-
 }

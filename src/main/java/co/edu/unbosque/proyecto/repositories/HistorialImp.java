@@ -18,13 +18,12 @@ public class HistorialImp implements HistorialRepository {
     EntityManager entityManager;
 
 
-    @Override
-    public void registerHist(HistorialPojo historialPojo, Integer id) {
-        String query = "FROM User where id = " + historialPojo.getId();
-        List<Historial> historials = entityManager.createQuery(query).getResultList();
-        entityManager.merge(historials);
-    }
 
+    @Override
+    public void registerHist(Historial historial) {
+
+        entityManager.merge(historial);
+    }
 
 
 }
